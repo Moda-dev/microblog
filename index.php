@@ -1,7 +1,6 @@
 <?php
 
-require 'modeles/Modele.php';
+require 'controllers/routeur.php';
 
-$billets = getBillets();
-
-require 'modele/vueAccueil.php';
+$routeur = new Routeur();
+$routeur->routerRequete();

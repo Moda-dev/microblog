@@ -1,47 +1,41 @@
-/* Pour pouvoir utiliser une hauteur (height) ou une hauteur minimale
-   (min-height) sur un bloc, il faut que son parent direct ait lui-même une
-   hauteur déterminée (donc toute valeur de height sauf "auto": hauteur en
-   pixels, em, autres unités...).
-   Si la hauteur du parent est en pourcentage, elle se réfère alors à la
-   hauteur du «grand-père», et ainsi de suite.
-   Pour pouvoir utiliser un "min-height: 100%" sur div#global, il nous faut:
-   - un parent (body) en "height: 100%";
-   - le parent de body également en "height: 100%". */
-html, body {
-    height: 100%;
-}
-
 body {
-    color: #bfbfbf;
-    background: black;
-    font-family: 'Futura-Medium', 'Futura', 'Trebuchet MS', sans-serif;
+  padding-top: 40px;
+  padding-bottom: 40px;
+  background-color: #eee;
 }
 
-h1 {
-    color: white;
+.form-signin {
+  max-width: 330px;
+  padding: 15px;
+  margin-left: auto;
+  margin-right: auto;
 }
-
-.titreBillet {
-    margin-bottom : 0px;
+.form-signin .form-signin-heading,
+.form-signin .checkbox {
+  margin-bottom: 10px;
 }
-
-#global {
-    min-height: 100%;  /* Voir commentaire sur html et body plus haut */
-    background: #333534;
-    width: 70%;
-    margin: auto;    /* Permet de centrer la div */
-    text-align: justify;
-    padding: 5px 20px;
+.form-signin .checkbox {
+  font-weight: normal;
 }
-
-#contenu {
-    margin-bottom : 30px;
+.form-signin .form-control {
+  position: relative;
+  height: auto;
+  -webkit-box-sizing: border-box;
+     -moz-box-sizing: border-box;
+          box-sizing: border-box;
+  padding: 10px;
+  font-size: 16px;
 }
-
-#titreBlog, #piedBlog {
-    text-align: center;
+.form-signin .form-control:focus {
+  z-index: 2;
 }
-
-a {
-    text-decoration: none;
+.form-signin input[type="email"] {
+  margin-bottom: -1px;
+  border-bottom-right-radius: 0;
+  border-bottom-left-radius: 0;
+}
+.form-signin input[type="password"] {
+  margin-bottom: 10px;
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
 }

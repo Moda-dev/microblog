@@ -8,40 +8,38 @@ require_once 'vues/vue.php';
 class Routeur {
 
   private $ctrlAccueil;
-  private $ctrlBillet;
+  private $ctrlMessage;
 
   public function __construct() {
     $this->ctrlAccueil = new ControleurAccueil();
-    $this->ctrlBillet = new controllerMessage();
+    $this->ctrlMessage = new ControllerMessage();
   }
 
   // Traite une requête entrante
-  public function routerRequete() {
-    try {
-      if (isset($_GET['action'])) {
-        if ($_GET['action'] == 'message') {
-          if (isset($_GET['id'])) {
-            $idMessage = intval($_GET['id']);
-            if ($idMessage != 0) {
-              $this->ctrlBillet->message($idMessage);
+    public function routerRequete() {
+        try
+        {
+            if (isset($_POST['action']))
+            {
+                if ($_POST['action'] == 'connexion')
+                {
+                    if (isset($_POST['login']) || isset($_POST['password']))
+                    {
+                        $this->ctrlMessage->connecterUtilisateur($_POST['login'], $_POST['password']);
+                    }
+                    else
+                        throw new Exception("Identifiants non valides.");
+                }
             }
-            else
-              throw new Exception("Identifiant de message non valide");
-          }
-          else
-            throw new Exception("Identifiant de message non défini");
+            else {  // aucune action définie : affichage de l'accueil
+                    $this->ctrlAccueil->accueil();
+            }
         }
-        else
-          throw new Exception("Action non valide");
-      }
-      else {  // aucune action définie : affichage de l'accueil
-        $this->ctrlAccueil->accueil();
-      }
+        catch (Exception $e)
+        {
+            $this->erreur($e->getMessage());
+        }
     }
-    catch (Exception $e) {
-      $this->erreur($e->getMessage());
-    }
-  }
 
   // Affiche une erreur
   private function erreur($msgErreur) {

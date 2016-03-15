@@ -32,7 +32,7 @@ class utilisateur extends Modele {
   // Renvoie la liste des message de l'utilisateur, et des personnes qu'il suit.
   //Un utilisateur possède au moins un abonnement, lui-même.
   public function getMessages() {
-    $sql = 'select date, texte, auteur from messages where auteur in (select suivi from abonnements where abonne='.$_SESSION['userId'].')';
+    $sql = 'select date, texte, login as auteur from messages, utilisateurs where messages.auteur=utilisateurs.id and messages.auteur in (select suivi from abonnements where abonne='.$_SESSION['userId'].') order by date';
     $messages = $this->executerRequete($sql);
     return $messages;
   }

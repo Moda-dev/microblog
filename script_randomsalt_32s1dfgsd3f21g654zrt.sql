@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Client :  127.0.0.1
--- Généré le :  Lun 14 Mars 2016 à 00:26
+-- Généré le :  Mar 15 Mars 2016 à 23:13
 -- Version du serveur :  10.1.10-MariaDB
 -- Version de PHP :  5.6.19
 
@@ -17,68 +17,53 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Base de données :  `monblog`
+-- Base de données :  `microblog`
 --
 
 -- --------------------------------------------------------
 
 --
--- Structure de la table `t_billet`
+-- Structure de la table `utilisateurs`
 --
 
-CREATE TABLE `t_billet` (
-  `BIL_ID` int(11) NOT NULL,
-  `BIL_DATE` datetime NOT NULL,
-  `BIL_TITRE` varchar(100) NOT NULL,
-  `BIL_CONTENU` varchar(400) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+CREATE TABLE `utilisateurs` (
+  `id` bigint(20) UNSIGNED NOT NULL COMMENT 'Identifiant unique dans la base',
+  `login` varchar(32) COLLATE utf8_bin NOT NULL COMMENT 'identifiant de connexion',
+  `nom` varchar(64) COLLATE utf8_bin DEFAULT NULL COMMENT 'nom de l’utilisateur',
+  `prenom` varchar(64) COLLATE utf8_bin DEFAULT NULL COMMENT 'prénom de l’utilisateur',
+  `motdepasse` tinytext COLLATE utf8_bin NOT NULL COMMENT 'mot de passe de connexion (devrait être chiffré)'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin COMMENT='Les utilisateurs';
 
 --
--- Contenu de la table `t_billet`
+-- Contenu de la table `utilisateurs`
 --
 
-INSERT INTO `t_billet` (`BIL_ID`, `BIL_DATE`, `BIL_TITRE`, `BIL_CONTENU`) VALUES
-(1, '2016-03-13 23:13:56', 'Premier billet', 'Bonjour monde ! Ceci est le premier billet sur mon blog.'),
-(2, '2016-03-13 23:13:56', 'Au travail', 'Il faut enrichir ce blog dès maintenant.');
-
--- --------------------------------------------------------
-
---
--- Structure de la table `t_commentaire`
---
-
-CREATE TABLE `t_commentaire` (
-  `COM_ID` int(11) NOT NULL,
-  `COM_DATE` datetime NOT NULL,
-  `COM_AUTEUR` varchar(100) NOT NULL,
-  `COM_CONTENU` varchar(200) NOT NULL,
-  `BIL_ID` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Contenu de la table `t_commentaire`
---
-
-INSERT INTO `t_commentaire` (`COM_ID`, `COM_DATE`, `COM_AUTEUR`, `COM_CONTENU`, `BIL_ID`) VALUES
-(1, '2016-03-13 23:15:22', 'A. Nonyme', 'Bravo pour ce début.', 1),
-(2, '2016-03-13 23:15:22', 'Moi', 'Merci ! Je vais continuer sur ma lancée', 1);
+INSERT INTO `utilisateurs` (`id`, `login`, `nom`, `prenom`, `motdepasse`) VALUES
+(1, 'admin', 'Monget', 'David', 'd033e22ae348aeb5660fc2140aec35850c4da997'),
+(2, 'bricobob', 'lebricoleur', 'bob', 'e38c3644f5de1357ab78152f8fa4c70619e9f2ce'),
+(3, 'explodora', 'lexploratrice', 'dora', '25b63874f12887d5052578d6e2253480e4d24ece');
 
 --
 -- Index pour les tables exportées
 --
 
 --
--- Index pour la table `t_billet`
+-- Index pour la table `utilisateurs`
 --
-ALTER TABLE `t_billet`
-  ADD PRIMARY KEY (`BIL_ID`);
+ALTER TABLE `utilisateurs`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `id` (`id`),
+  ADD UNIQUE KEY `login` (`login`);
 
 --
--- Index pour la table `t_commentaire`
+-- AUTO_INCREMENT pour les tables exportées
 --
-ALTER TABLE `t_commentaire`
-  ADD PRIMARY KEY (`COM_ID`);
 
+--
+-- AUTO_INCREMENT pour la table `utilisateurs`
+--
+ALTER TABLE `utilisateurs`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT COMMENT 'Identifiant unique dans la base', AUTO_INCREMENT=4;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;

@@ -21,6 +21,6 @@ class ControllerMessage {
   public function messages() {
     $messages = $this->utilisateur->getMessages();
     $vue = new Vue("Message");
-    $vue->generer(array('message' => $messages));
+    $vue->generer(array('messages' => $messages));
   }
 }

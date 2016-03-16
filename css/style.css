@@ -39,3 +39,26 @@ body {
   border-top-left-radius: 0;
   border-top-right-radius: 0;
 }
+
+.content {
+    margin-top: 25px;
+    width : 500px;
+}
+
+.message {
+
+    -moz-box-shadow: 5px 3px 3px 0px #656565;
+    -webkit-box-shadow: 5px 3px 3px 0px #656565;
+    -o-box-shadow: 5px 3px 3px 0px #656565;
+    box-shadow: 5px 3px 3px 0px #656565;
+
+    margin-bottom: 10px;
+}
+
+.auteur {
+    font-weight: bold;
+}
+
+.poster {
+    margin-bottom: 25px;
+}

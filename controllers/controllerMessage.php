@@ -23,4 +23,14 @@ class ControllerMessage {
     $vue = new Vue("Message");
     $vue->generer(array('messages' => $messages));
   }
+
+  public function ajouterMessage($message) {
+      $this->utilisateur->addMessage($message);
+      $this->messages();
+  }
+
+    public function deconnexion()
+    {
+        $this->utilisateur->deconnexion();
+    }
 }

@@ -1,6 +1,7 @@
 <?php $this->titre = "Connexion"; ?>
 <div class="container">
 
+       <!-- formulaire de connexion -->
     <form action="index.php" method="post" class="form-signin">
         <h2 class="form-signin-heading">Please sign in</h2>
 

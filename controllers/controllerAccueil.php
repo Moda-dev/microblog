@@ -8,7 +8,7 @@ class ControleurAccueil {
   public function __construct() {
   }
 
-  // Affiche la liste de tous les billets du blog
+  // Connecte l'utilisateur, et le renvoi vers la page des messages en cas de succès.
   public function accueil() {
     $vue = new Vue("Connexion");
     $vue->generer($contenu = []);

@@ -15,10 +15,11 @@
           <ul class="nav navbar-nav navbar-right">
             <li><a href="index.php?action=deconnexion">Déconnexion</a></li>
           </ul>
-        </div><!--/.nav-collapse -->
+        </div>
     </nav>
 
 <div class='container content'>
+   <!--Formulaire d'ajout d'un message-->
     <form class='poster' action="index.php" method="post">
         <fieldset>
             <legend>Exprimez-vous : </legend>
@@ -29,11 +30,13 @@
         </fieldset>
     </form>
 
+    <!--liste des messages -->
     <?php foreach ($messages as $message): ?>
     <div class='message'>
-        <p class='auteur'><?= $message['auteur'] ?> dit :</p>
+        <p class='auteur'><?= $message['login'] ?> dit :</p>
         <p class='contenu'><?= $message['texte'] ?></p>
         <p class='date'><?= $message['date'] ?></p>
+
     </div>
     <?php endforeach; ?>
 </div>
